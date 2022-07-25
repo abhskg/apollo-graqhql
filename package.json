@@ -1,0 +1,21 @@
+{
+  "name": "apollo-graqhql",
+  "version": "1.0.0",
+  "description": "Apollo GraphQL Server",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhskg/apollo-graqhql.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abhskg/apollo-graqhql/issues"
+  },
+  "homepage": "https://github.com/abhskg/apollo-graqhql#readme",
+  "dependencies": {
+    "apollo-server": "^3.10.0",
+    "graphql": "^16.5.0"
+  }
+}
