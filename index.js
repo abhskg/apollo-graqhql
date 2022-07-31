@@ -1,37 +1,15 @@
-const { ApolloServer, gql } = require('apollo-server');
+const { ApolloServer } = require('apollo-server');
+const { gql } = require('apollo-server');
+const leagueService= require('./leagueService')
+const typeDefs= require('./typedefs')
+var axios = require('axios');
 
-const typeDefs = gql`
-  type Employee {
-    name: String
-    designation: String
-  }
-  type Query {
-    employee: [Employee]
-  }
-`;
-
-const employee = [
-    {
-      name: 'Josh Smith',
-      designation: 'Sales Head',
-    },
-    {
-      name: 'Sundar Patel',
-      designation: 'IT Operations',
-    },,
-    {
-      name: 'Ricardo García ',
-      designation: 'Financial Approver',
-    },,
-    {
-      name: 'Roger Walker',
-      designation: 'Junior Developer',
-    },
-  ];
-  
 const resolvers = {
     Query: {
-        employee: () => employee,
+        getAllLeagues: leagueService.getAllLeagues,
+        getLeagueDetails: leagueService.getLeagueDetails,
+        getSeasonDetails: leagueService.getSeasonDetails,        
+        getSeasonStanding: leagueService.getSeasonStanding,
     },
   };
 
@@ -40,6 +18,11 @@ const resolvers = {
     resolvers,
     csrfPrevention: true,
     cache: 'bounded',
+    context: ({ req }) => {
+      return {
+        headers: req.headers
+      }
+    }
   });
   
   server.listen().then(({ url }) => {
